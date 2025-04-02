@@ -1,5 +1,8 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { Upload } from 'lucide-react';
+
+const { className = '' } = Astro.props;
 ---
 
 <Layout title="Portfol.io | My Portfolio">
@@ -7,19 +10,89 @@ import Layout from '../../layouts/Layout.astro';
     <div class="grid gap-8">
       <section class="">
         <form action="/action_page.php" class="space-y-4">
-            <div class="text-left">
-              <label for="title" class="block text-lg text-gray-600 dark:text-gray-300 mb-2">Title</label>
-              <input type="text" id="text" name="text" class="w-full p-2 text-zinc-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          <div class="text-left">
+            <label for="title" class="block text-lg text-gray-600 dark:text-gray-300 mb-2">Title</label>
+            <input type="text" id="text" name="text" class="opacity-50 w-80 p-2 text-zinc-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          </div>
+          <div class="text-left">
+            <label for="text" class="block text-lg text-gray-600 dark:text-gray-300 mb-2">Description</label>
+            <input type="text" id="description" name="description" class="opacity-50 w-80 h-24 p-2 text-zinc-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+          </div>
+
+          <div class="text-left">
+            <p class="text-lg mb-4">My Work</p>
+            <div class="grid grid-cols-5 grid-rows-2 gap-4">
+              <div class="bg-zinc-600 border border-gray-300 rounded-lg h-32 flex items-center justify-center hover:bg-zinc-400 ease-in-out transition-colors duration-300">
+                <Upload/>
+              </div>
+              <div class="bg-white border border-gray-300 rounded-lg h-32 flex items-center justify-center bg-cover bg-center" style="background-image: url('https://cdn.acidmal.com/CAD.png');">
+                <a href="https://cdn.acidmal.com/CAD.png" target="_blank" class="w-full h-full"></a>
+              </div>
+              <div class="bg-white border border-gray-300 rounded-lg h-32 flex items-center justify-center bg-cover bg-center" style="background-image: url('https://cdn.acidmal.com/Painting.png');">
+                <a href="https://cdn.acidmal.com/Painting.png" target="_blank" class="w-full h-full"></a>
+              </div>
+              <div class="bg-white border border-gray-300 rounded-lg h-32 flex items-center justify-center bg-cover bg-center" style="background-image: url('https://cdn.acidmal.com/deer.jpg');">
+                <a href="https://cdn.acidmal.com/deer.jpg" target="_blank" class="w-full h-full"></a>
+              </div>
+              <div class="bg-white border border-gray-300 rounded-lg h-32 flex items-center justify-center bg-cover bg-center" style="background-image: url('https://cdn.acidmal.com/finished_painting.png');">
+                <a href="https://cdn.acidmal.com/finished_painting.png" target="_blank" class="w-full h-full"></a>
+              </div>
+              <div class="bg-white border border-gray-300 rounded-lg h-32 flex items-center justify-center bg-cover bg-center" style="background-image: url('https://cdn.acidmal.com/flowers.webp');">
+                <a href="https://cdn.acidmal.com/flowers.webp" target="_blank" class="w-full h-full"></a>
+              </div>
+              <div class="bg-white border border-gray-300 rounded-lg h-32 flex items-center justify-center bg-cover bg-center" style="background-image: url('https://cdn.acidmal.com/isobars.png');">
+                <a href="https://cdn.acidmal.com/isobars.png" target="_blank" class="w-full h-full"></a>
+              </div>
+              <div class="bg-white border border-gray-300 rounded-lg h-32 flex items-center justify-center bg-cover bg-center" style="background-image: url('https://cdn.acidmal.com/lake.jpg');">
+                <a href="https://cdn.acidmal.com/lake.jpg" target="_blank" class="w-full h-full"></a>
+              </div>
+              <div class="bg-white border border-gray-300 rounded-lg h-32 flex items-center justify-center bg-cover bg-center" style="background-image: url('https://cdn.acidmal.com/pier.jpg');">
+                <a href="https://cdn.acidmal.com/pier.jpg" target="_blank" class="w-full h-full"></a>
+              </div>
+              <div class="bg-white border border-gray-300 rounded-lg h-32 flex items-center justify-center bg-cover bg-center" style="background-image: url('https://cdn.acidmal.com/railroad.jpg');">
+                <a href="https://cdn.acidmal.com/railroad.jpg" target="_blank" class="w-full h-full"></a>
+              </div>
             </div>
-            <div class="text-left">
-              <label for="text" class="block text-lg text-gray-600 dark:text-gray-300 mb-2">Desciption</label>
-              <input type="text" id="description" name="description" class="w-full p-2 text-zinc-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            </div>
-            <button type="submit" class="mt-4 w-full mt-4 p-3 rounded-lg text-zinc-900 bg-zinc-100 hover:bg-zinc-400 transition-colors duration-300">
-              Submit
+          </div>
+          <div>
+            <button id="popup-button" class="bg-zinc-100 hover:bg-zinc-400 ease-in-out duration-300 text-zinc-900 p-3 rounded-lg">
+              Update Portfolio
             </button>
+          </div>
         </form>
       </section>
     </div>
   </div>
+
+  <div id="popup" class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 text-zinc-900 -translate-y-1/2 bg-white p-4 rounded-lg shadow-lg">
+    <p>Your Portfolio has been Saved!</p>
+  </div>
+
+  <script>
+    const popupButton = document.getElementById('popup-button');
+    if (popupButton) {
+      popupButton.addEventListener('click', function() {
+        const popup = document.getElementById('popup');
+        if (popup) {
+          popup.classList.remove('hidden');
+          setTimeout(() => {
+            popup.classList.add('hidden');
+          }, 5000); // 5 seconds
+        }
+      });
+    }
+  </script>
 </Layout>
+
+<style>
+  .social-button {
+    @apply p-2 rounded-lg bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-all duration-300;
+    box-shadow: 0 0 0 0 rgba(156, 163, 175, 0);
+  }
+
+  .social-button:hover {
+    @apply bg-gray-400 dark:bg-gray-600;
+    box-shadow: 0 0 20px 0 rgba(156, 163, 175, 0.5);
+    transform: translateY(-2px);
+  }
+</style>
