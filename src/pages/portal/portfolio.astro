@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Portfol.io | My Portfolio">
+  <div class="max-w-4xl mt-6 mx-auto">
+    <div class="grid gap-8">
+      <section class="">
+        <form action="/action_page.php" class="space-y-4">
+            <div class="text-left">
+              <label for="title" class="block text-lg text-gray-600 dark:text-gray-300 mb-2">Title</label>
+              <input type="text" id="text" name="text" class="w-full p-2 text-zinc-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <div class="text-left">
+              <label for="text" class="block text-lg text-gray-600 dark:text-gray-300 mb-2">Desciption</label>
+              <input type="text" id="description" name="description" class="w-full p-2 text-zinc-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+            </div>
+            <button type="submit" class="mt-4 w-full mt-4 p-3 rounded-lg text-zinc-900 bg-zinc-100 hover:bg-zinc-400 transition-colors duration-300">
+              Submit
+            </button>
+        </form>
+      </section>
+    </div>
+  </div>
+</Layout>
